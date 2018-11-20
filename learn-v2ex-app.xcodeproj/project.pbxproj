@@ -13,9 +13,12 @@
 		0DBA13E821A4439800F2D284 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DBA13E721A4439800F2D284 /* Assets.xcassets */; };
 		0DBA13EB21A4439800F2D284 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DBA13E921A4439800F2D284 /* LaunchScreen.storyboard */; };
 		0DBA13EE21A4439800F2D284 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBA13ED21A4439800F2D284 /* main.m */; };
+		0DBA13F721A44A9500F2D284 /* NetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBA13F621A44A9500F2D284 /* NetworkHelper.m */; };
+		D493D7D1856321BC7C048B8C /* libPods-learn-v2ex-app.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3E504D98055FB3E526EB35F /* libPods-learn-v2ex-app.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C6D0DD78E3238401AB2F8F7 /* Pods-learn-v2ex-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-learn-v2ex-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-learn-v2ex-app/Pods-learn-v2ex-app.release.xcconfig"; sourceTree = "<group>"; };
 		0DBA13DB21A4439700F2D284 /* learn-v2ex-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "learn-v2ex-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DBA13DE21A4439700F2D284 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0DBA13DF21A4439700F2D284 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -26,6 +29,10 @@
 		0DBA13EA21A4439800F2D284 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0DBA13EC21A4439800F2D284 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0DBA13ED21A4439800F2D284 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0DBA13F521A44A9500F2D284 /* NetworkHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkHelper.h; sourceTree = "<group>"; };
+		0DBA13F621A44A9500F2D284 /* NetworkHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkHelper.m; sourceTree = "<group>"; };
+		5BB3EC5BE4B34BC047EA6763 /* Pods-learn-v2ex-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-learn-v2ex-app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-learn-v2ex-app/Pods-learn-v2ex-app.debug.xcconfig"; sourceTree = "<group>"; };
+		F3E504D98055FB3E526EB35F /* libPods-learn-v2ex-app.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-learn-v2ex-app.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D493D7D1856321BC7C048B8C /* libPods-learn-v2ex-app.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +52,8 @@
 			children = (
 				0DBA13DD21A4439700F2D284 /* learn-v2ex-app */,
 				0DBA13DC21A4439700F2D284 /* Products */,
+				621DF8A106E51CDF206FA312 /* Pods */,
+				1E4D25FA525DABBC17681680 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +68,7 @@
 		0DBA13DD21A4439700F2D284 /* learn-v2ex-app */ = {
 			isa = PBXGroup;
 			children = (
+				0DBA13F421A4456C00F2D284 /* Network */,
 				0DBA13DE21A4439700F2D284 /* AppDelegate.h */,
 				0DBA13DF21A4439700F2D284 /* AppDelegate.m */,
 				0DBA13E121A4439700F2D284 /* ViewController.h */,
@@ -71,6 +82,32 @@
 			path = "learn-v2ex-app";
 			sourceTree = "<group>";
 		};
+		0DBA13F421A4456C00F2D284 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				0DBA13F521A44A9500F2D284 /* NetworkHelper.h */,
+				0DBA13F621A44A9500F2D284 /* NetworkHelper.m */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		1E4D25FA525DABBC17681680 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F3E504D98055FB3E526EB35F /* libPods-learn-v2ex-app.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		621DF8A106E51CDF206FA312 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5BB3EC5BE4B34BC047EA6763 /* Pods-learn-v2ex-app.debug.xcconfig */,
+				0C6D0DD78E3238401AB2F8F7 /* Pods-learn-v2ex-app.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -78,9 +115,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0DBA13F121A4439800F2D284 /* Build configuration list for PBXNativeTarget "learn-v2ex-app" */;
 			buildPhases = (
+				83A29F17371CFF1C33CF782D /* [CP] Check Pods Manifest.lock */,
 				0DBA13D721A4439700F2D284 /* Sources */,
 				0DBA13D821A4439700F2D284 /* Frameworks */,
 				0DBA13D921A4439700F2D284 /* Resources */,
+				57DA167112653ED2B6D93826 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -136,11 +175,51 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		57DA167112653ED2B6D93826 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-learn-v2ex-app/Pods-learn-v2ex-app-resources.sh",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-learn-v2ex-app/Pods-learn-v2ex-app-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		83A29F17371CFF1C33CF782D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-learn-v2ex-app-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0DBA13D721A4439700F2D284 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DBA13F721A44A9500F2D284 /* NetworkHelper.m in Sources */,
 				0DBA13E321A4439700F2D284 /* ViewController.m in Sources */,
 				0DBA13EE21A4439800F2D284 /* main.m in Sources */,
 				0DBA13E021A4439700F2D284 /* AppDelegate.m in Sources */,
@@ -283,6 +362,7 @@
 		};
 		0DBA13F221A4439800F2D284 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5BB3EC5BE4B34BC047EA6763 /* Pods-learn-v2ex-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -299,6 +379,7 @@
 		};
 		0DBA13F321A4439800F2D284 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C6D0DD78E3238401AB2F8F7 /* Pods-learn-v2ex-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
