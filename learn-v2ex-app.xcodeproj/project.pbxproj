@@ -13,6 +13,8 @@
 		0DBA13EB21A4439800F2D284 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DBA13E921A4439800F2D284 /* LaunchScreen.storyboard */; };
 		0DBA13EE21A4439800F2D284 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBA13ED21A4439800F2D284 /* main.m */; };
 		0DBA13F721A44A9500F2D284 /* NetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBA13F621A44A9500F2D284 /* NetworkHelper.m */; };
+		0DBA13FB21A573F700F2D284 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBA13FA21A573F700F2D284 /* BaseModel.m */; };
+		0DBA13FE21A574F200F2D284 /* TopicsHotModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBA13FD21A574F200F2D284 /* TopicsHotModel.m */; };
 		CFD8164E21A4EDE90098F526 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD8164D21A4EDE90098F526 /* TabBarController.m */; };
 		CFD8165121A4EE250098F526 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD8165021A4EE250098F526 /* NavigationController.m */; };
 		CFE2C94F21A531E6000DB613 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE2C94E21A531E6000DB613 /* HomePageViewController.m */; };
@@ -34,6 +36,10 @@
 		0DBA13ED21A4439800F2D284 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0DBA13F521A44A9500F2D284 /* NetworkHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkHelper.h; sourceTree = "<group>"; };
 		0DBA13F621A44A9500F2D284 /* NetworkHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkHelper.m; sourceTree = "<group>"; };
+		0DBA13F921A573F700F2D284 /* BaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
+		0DBA13FA21A573F700F2D284 /* BaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
+		0DBA13FC21A574F200F2D284 /* TopicsHotModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicsHotModel.h; sourceTree = "<group>"; };
+		0DBA13FD21A574F200F2D284 /* TopicsHotModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicsHotModel.m; sourceTree = "<group>"; };
 		5BB3EC5BE4B34BC047EA6763 /* Pods-learn-v2ex-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-learn-v2ex-app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-learn-v2ex-app/Pods-learn-v2ex-app.debug.xcconfig"; sourceTree = "<group>"; };
 		CFD8164C21A4EDE90098F526 /* TabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		CFD8164D21A4EDE90098F526 /* TabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
@@ -84,6 +90,7 @@
 		0DBA13DD21A4439700F2D284 /* learn-v2ex-app */ = {
 			isa = PBXGroup;
 			children = (
+				0DBA13F821A573D900F2D284 /* Model */,
 				CFE2C95721A54429000DB613 /* utils */,
 				CFD8164921A4ECA60098F526 /* modules */,
 				0DBA13F421A4456C00F2D284 /* Network */,
@@ -105,6 +112,17 @@
 				0DBA13F621A44A9500F2D284 /* NetworkHelper.m */,
 			);
 			name = Network;
+			sourceTree = "<group>";
+		};
+		0DBA13F821A573D900F2D284 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0DBA13F921A573F700F2D284 /* BaseModel.h */,
+				0DBA13FA21A573F700F2D284 /* BaseModel.m */,
+				0DBA13FC21A574F200F2D284 /* TopicsHotModel.h */,
+				0DBA13FD21A574F200F2D284 /* TopicsHotModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		1E4D25FA525DABBC17681680 /* Frameworks */ = {
@@ -296,12 +314,14 @@
 			files = (
 				0DBA13F721A44A9500F2D284 /* NetworkHelper.m in Sources */,
 				CFD8164E21A4EDE90098F526 /* TabBarController.m in Sources */,
+				0DBA13FE21A574F200F2D284 /* TopicsHotModel.m in Sources */,
 				CFE2C94F21A531E6000DB613 /* HomePageViewController.m in Sources */,
 				CFE2C95B21A54F4B000DB613 /* HotCollectionViewCell.m in Sources */,
 				CFD8165121A4EE250098F526 /* NavigationController.m in Sources */,
 				CFE2C95321A534D3000DB613 /* ProfileViewController.m in Sources */,
 				0DBA13EE21A4439800F2D284 /* main.m in Sources */,
 				0DBA13E021A4439700F2D284 /* AppDelegate.m in Sources */,
+				0DBA13FB21A573F700F2D284 /* BaseModel.m in Sources */,
 				CFE2C95621A53D92000DB613 /* HomeNavigationItemBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

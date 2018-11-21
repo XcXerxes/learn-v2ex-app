@@ -9,6 +9,8 @@
 #import "HomePageViewController.h"
 #import "HotCollectionViewCell.h"
 #import "Constants.h"
+#import "NetworkHelper.h"
+#import "TopicsHotModel.h"
 
 @interface HomePageViewController ()
 <
@@ -16,9 +18,19 @@ UICollectionViewDelegate,
 UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout
 >
+@property (nonatomic, copy) NSMutableArray *hotList;
 @end
 
 @implementation HomePageViewController
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _hotList = [NSMutableArray new];
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,6 +38,7 @@ UICollectionViewDelegateFlowLayout
     self.navigationController.navigationBar.translucent = NO;
     [self initNavigationItem];
     [self initCollectionView];
+    [self loadData];
     // Do any additional setup after loading the view.
 }
 
@@ -48,7 +61,6 @@ UICollectionViewDelegateFlowLayout
     layout.minimumInteritemSpacing = 0;
     layout.estimatedItemSize = CGSizeMake(ScreenWidth, 300);
     // 初始化 collection 大小为全屏的
-    self.tabBarController.tabBar.hidden = YES;
     NSLog(@"tabbar的高度====%f", self.tabBarController.tabBar.frame.size.height);
     NSLog(@"navigationBar的高度=====%f", self.navigationController.navigationBar.frame.size.height);
     _collectionView = [[UICollectionView alloc] initWithFrame: CGRectMake(0, 0, ScreenWidth, ScreenHeight - 64 - 30) collectionViewLayout:layout];
@@ -81,11 +93,13 @@ UICollectionViewDelegateFlowLayout
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 10;
+    return _hotList.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cellId" forIndexPath:indexPath];
+    HotCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cellId" forIndexPath:indexPath];
+    NSLog(@"index=====%@", _hotList);
+    [cell initData: _hotList[indexPath.item]];
     cell.backgroundColor = [UIColor whiteColor];
     return cell;
 }
@@ -93,7 +107,25 @@ UICollectionViewDelegateFlowLayout
 //    return CGSizeMake(ScreenWidth, coll);
 //}
 
-
+-(void)loadData {
+    TopicsHotModel *request = [TopicsHotModel new];
+    __weak typeof (self) wself = self;
+    [NetworkHelper getWithUrlPath:TopicsHotURL request:request success:^(id data) {
+        NSLog(@"%@", data);
+        for (NSDictionary *dic in data) {
+            TopicsHotModel *topicsHotModel = [TopicsHotModel new];
+            NSDictionary *node = [dic objectForKey:@"node"];
+            topicsHotModel.avatar_normal = [node objectForKey:@"avatar_large"];
+            topicsHotModel.name = [node objectForKey:@"name"];
+            topicsHotModel.last_modified = [dic objectForKey:@"last_modified"];
+            topicsHotModel.content = [dic objectForKey:@"content"];
+            [wself.hotList addObject:topicsHotModel];
+        }
+        [wself.collectionView reloadData];
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
+}
 /*
 #pragma mark - Navigation
 

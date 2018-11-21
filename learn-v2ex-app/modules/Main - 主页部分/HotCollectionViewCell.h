@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TopicsHotModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,6 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *releaseTimeLabel;
 // 定义内容
 @property (nonatomic, strong) UILabel *descriptionLabel;
+//
+@property (nonatomic, copy) TopicsHotModel *topicsModel;
+
+-(void)initData:(TopicsHotModel *)topicsModel;
 
 @end
 

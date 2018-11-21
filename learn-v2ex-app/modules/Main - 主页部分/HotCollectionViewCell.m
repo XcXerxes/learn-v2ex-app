@@ -8,6 +8,7 @@
 
 #import "HotCollectionViewCell.h"
 #import "Masonry.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation HotCollectionViewCell
 - (instancetype)initWithFrame:(CGRect)frame
@@ -16,8 +17,6 @@
     if (self) {
         // 定义头像容器
         _avatarImageView = [[UIImageView alloc] initWithImage: [UIImage new]];
-        _avatarImageView.layer.borderWidth = 1;
-        _avatarImageView.layer.borderColor = [UIColor blackColor].CGColor;
         [self.contentView addSubview:_avatarImageView];
         [_avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self).offset(10);
@@ -27,7 +26,7 @@
         // 定义名字
         _nameLabel = [UILabel new];
         _nameLabel.text = @"antony";
-        _nameLabel.font = [UIFont systemFontOfSize: 16];
+        _nameLabel.font = [UIFont systemFontOfSize: 20];
         [self.contentView addSubview:_nameLabel];
         [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.avatarImageView.mas_top);
@@ -36,7 +35,7 @@
         // 定义注册时间
         _releaseTimeLabel = [UILabel new];
         _releaseTimeLabel.text = @"2018-02-20 21:00:00";
-        _releaseTimeLabel.font = [UIFont systemFontOfSize:14];
+        _releaseTimeLabel.font = [UIFont systemFontOfSize:18];
         [self.contentView addSubview:_releaseTimeLabel];
         [_releaseTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.mas_equalTo(self.avatarImageView.mas_bottom);
@@ -74,5 +73,22 @@
         return [self.contentView sizeThatFits:targetSize];
     }
 }
-
+- (void)initData:(TopicsHotModel *)topicsModel {
+    [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https:%@", topicsModel.avatar_normal]]];
+    _nameLabel.text = topicsModel.name;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; //实例化一个NSDateFormatter对象
+    //设定时间格式,这里可以设置成自己需要的格式
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSLog(@"sdsd===%@", topicsModel.last_modified);
+    if ([topicsModel.last_modified isKindOfClass:[NSDate class]]) {
+        NSLog(@"123");
+    }
+    NSNumber *num = topicsModel.last_modified;
+    NSTimeInterval interval    =[num doubleValue];
+    NSDate *date               = [NSDate dateWithTimeIntervalSince1970:interval];
+    NSString *currentDateStr = [dateFormatter stringFromDate: date];
+    NSLog(@"curr=====%@", currentDateStr);
+    _releaseTimeLabel.text = currentDateStr;
+    _descriptionLabel.text = topicsModel.content;
+}
 @end
