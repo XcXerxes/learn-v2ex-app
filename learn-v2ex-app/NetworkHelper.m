@@ -47,4 +47,26 @@ NSString * const TopicsByNodeIdURL = @"/topics/show.json?node_id=";
     });
     return manager;
 }
+
++(void) processResponseData:(id)responseObject success:(HttpSuccess)success failure:(HttpFailure)failure{
+    // 判断接口是否返回字典数据
+    if ([responseObject isKindOfClass:[NSDictionary class]]) {
+        success(responseObject);
+    } else {
+        NSError *error = [NSError errorWithDomain: @"" code:-200 userInfo:nil];
+        failure(error);
+    }
+}
+
+// GET 请求
++ (NSURLSessionDataTask *)getWithUrlPath:(NSString *)urlPath request:(JSONModel *)request success:(HttpSuccess)success failure:(HttpFailure)failure {
+    // 将请求的参数转为字典
+    NSDictionary *parameters = [request toDictionary];
+    // 返回一个 dataTask
+    return [[NetworkHelper sharedManager] GET:urlPath parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [NetworkHelper processResponseData:responseObject success:success failure:failure];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
 @end
