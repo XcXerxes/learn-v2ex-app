@@ -12,6 +12,7 @@
 #import "NetworkHelper.h"
 #import "TopicsHotModel.h"
 #import "HomeCollectionViewFlowLayout.h"
+#import "MJRefresh.h"
 
 @interface HomePageViewController ()
 <
@@ -36,6 +37,7 @@ UICollectionViewDelegateFlowLayout
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.translucent = NO;
     self.tabBarController.tabBar.hidden = YES;
     [self initNavigationItem];
     [self initCollectionView];
@@ -81,6 +83,17 @@ UICollectionViewDelegateFlowLayout
     _collectionView.showsVerticalScrollIndicator = NO;
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
+    // 下拉刷新
+    
+    __weak typeof(self) wself = self;
+    MJRefreshStateHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        sleep(2);
+        [wself loadData];
+        [wself.collectionView reloadData];
+        [self.collectionView.mj_header endRefreshing];
+    }];
+    _collectionView.mj_header = header;
+    [_collectionView registerClass:[MJRefreshStateHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headeId"];
     [_collectionView registerClass:[HotCollectionViewCell class] forCellWithReuseIdentifier:@"cellId"];
     
     [self.view addSubview:_collectionView];
