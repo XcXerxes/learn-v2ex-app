@@ -20,11 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *releaseTimeLabel;
 // 定义内容
 @property (nonatomic, strong) UILabel *descriptionLabel;
-//
+//数据模型
 @property (nonatomic, copy) TopicsHotModel *topicsModel;
 
 -(void)initData:(TopicsHotModel *)topicsModel;
-
 @end
 
 NS_ASSUME_NONNULL_END

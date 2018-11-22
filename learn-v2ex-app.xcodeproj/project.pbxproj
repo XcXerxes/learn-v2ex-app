@@ -21,6 +21,7 @@
 		CFE2C95321A534D3000DB613 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE2C95221A534D3000DB613 /* ProfileViewController.m */; };
 		CFE2C95621A53D92000DB613 /* HomeNavigationItemBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE2C95521A53D92000DB613 /* HomeNavigationItemBar.m */; };
 		CFE2C95B21A54F4B000DB613 /* HotCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE2C95A21A54F4B000DB613 /* HotCollectionViewCell.m */; };
+		CFE2C95E21A68791000DB613 /* HomeCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE2C95D21A68791000DB613 /* HomeCollectionViewFlowLayout.m */; };
 		D493D7D1856321BC7C048B8C /* libPods-learn-v2ex-app.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3E504D98055FB3E526EB35F /* libPods-learn-v2ex-app.a */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,8 @@
 		CFE2C95821A54445000DB613 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		CFE2C95921A54F4B000DB613 /* HotCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotCollectionViewCell.h; sourceTree = "<group>"; };
 		CFE2C95A21A54F4B000DB613 /* HotCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotCollectionViewCell.m; sourceTree = "<group>"; };
+		CFE2C95C21A68791000DB613 /* HomeCollectionViewFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		CFE2C95D21A68791000DB613 /* HomeCollectionViewFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		F3E504D98055FB3E526EB35F /* libPods-learn-v2ex-app.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-learn-v2ex-app.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -180,6 +183,8 @@
 				CFE2C95521A53D92000DB613 /* HomeNavigationItemBar.m */,
 				CFE2C95921A54F4B000DB613 /* HotCollectionViewCell.h */,
 				CFE2C95A21A54F4B000DB613 /* HotCollectionViewCell.m */,
+				CFE2C95C21A68791000DB613 /* HomeCollectionViewFlowLayout.h */,
+				CFE2C95D21A68791000DB613 /* HomeCollectionViewFlowLayout.m */,
 			);
 			path = "Main - 主页部分";
 			sourceTree = "<group>";
@@ -323,6 +328,7 @@
 				0DBA13E021A4439700F2D284 /* AppDelegate.m in Sources */,
 				0DBA13FB21A573F700F2D284 /* BaseModel.m in Sources */,
 				CFE2C95621A53D92000DB613 /* HomeNavigationItemBar.m in Sources */,
+				CFE2C95E21A68791000DB613 /* HomeCollectionViewFlowLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

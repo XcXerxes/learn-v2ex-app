@@ -11,6 +11,7 @@
 #import "Constants.h"
 #import "NetworkHelper.h"
 #import "TopicsHotModel.h"
+#import "HomeCollectionViewFlowLayout.h"
 
 @interface HomePageViewController ()
 <
@@ -35,7 +36,7 @@ UICollectionViewDelegateFlowLayout
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationController.navigationBar.translucent = NO;
+    self.tabBarController.tabBar.hidden = YES;
     [self initNavigationItem];
     [self initCollectionView];
     [self loadData];
@@ -56,17 +57,23 @@ UICollectionViewDelegateFlowLayout
 // 设置collection 的UI
 -(void) initCollectionView {
     // 设置容器的样式
-    UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
-    layout.minimumLineSpacing = 1;
+    HomeCollectionViewFlowLayout *layout = [HomeCollectionViewFlowLayout new];
+    // 自适应布局
+    if (@available(iOS 10.0, *)) {
+        NSLog(@"版本");
+        layout.estimatedItemSize = CGSizeMake(1.0, 1.0);
+    } else {
+        
+    }
+    // 设置每列的间距
+    layout.minimumLineSpacing = 10;
     layout.minimumInteritemSpacing = 0;
-    layout.estimatedItemSize = CGSizeMake(ScreenWidth, 300);
     // 初始化 collection 大小为全屏的
-    NSLog(@"tabbar的高度====%f", self.tabBarController.tabBar.frame.size.height);
-    NSLog(@"navigationBar的高度=====%f", self.navigationController.navigationBar.frame.size.height);
-    _collectionView = [[UICollectionView alloc] initWithFrame: CGRectMake(0, 0, ScreenWidth, ScreenHeight - 64 - 30) collectionViewLayout:layout];
+    _collectionView = [[UICollectionView alloc] initWithFrame: CGRectMake(0, 0, ScreenWidth, ScreenHeight) collectionViewLayout:layout];
+    _collectionView.backgroundColor = [UIColor clearColor];
     // 适配 ios11 出现UI bug
     if (@available(iOS 11.0, *)) {
-        _collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        // _collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
@@ -98,20 +105,17 @@ UICollectionViewDelegateFlowLayout
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     HotCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cellId" forIndexPath:indexPath];
-    NSLog(@"index=====%@", _hotList);
     [cell initData: _hotList[indexPath.item]];
     cell.backgroundColor = [UIColor whiteColor];
     return cell;
 }
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    return CGSizeMake(ScreenWidth, coll);
-//}
+
 
 -(void)loadData {
     TopicsHotModel *request = [TopicsHotModel new];
     __weak typeof (self) wself = self;
     [NetworkHelper getWithUrlPath:TopicsHotURL request:request success:^(id data) {
-        NSLog(@"%@", data);
+        NSLog(@"%@====", data);
         for (NSDictionary *dic in data) {
             TopicsHotModel *topicsHotModel = [TopicsHotModel new];
             NSDictionary *node = [dic objectForKey:@"node"];
@@ -126,6 +130,7 @@ UICollectionViewDelegateFlowLayout
         NSLog(@"%@", error);
     }];
 }
+
 /*
 #pragma mark - Navigation
 

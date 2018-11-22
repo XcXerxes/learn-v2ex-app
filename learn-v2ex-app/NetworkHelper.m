@@ -62,11 +62,8 @@ NSString * const TopicsByNodeIdURL = @"/topics/show.json?node_id=";
 + (NSURLSessionDataTask *)getWithUrlPath:(NSString *)urlPath request:(JSONModel *)request success:(HttpSuccess)success failure:(HttpFailure)failure {
     // 将请求的参数转为字典
     NSDictionary *parameters = [request toDictionary];
-    NSLog(@"url======%@", [BaseURL stringByAppendingString:urlPath]);
     // 返回一个 dataTask
     return [[NetworkHelper sharedManager] GET: [BaseURL stringByAppendingString:urlPath] parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"data==========%@", responseObject);
-        
         [NetworkHelper processResponseData:responseObject success:success failure:failure];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failure(error);
