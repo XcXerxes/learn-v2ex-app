@@ -54,7 +54,6 @@
     [childController.tabBarItem setImage:[UIImage imageNamed:image]];
     [childController.tabBarItem setSelectedImage:[UIImage imageNamed:selectedImage]];
     NavigationController *nav = [[NavigationController alloc] initWithRootViewController:childController];
-    childController.title = title;
     childController.tabBarController.tabBar.translucent = NO;
     [self addChildViewController:nav];
 }

@@ -13,14 +13,23 @@
 #import "TopicsHotModel.h"
 #import "HomeCollectionViewFlowLayout.h"
 #import "MJRefresh.h"
+#import "ProfileViewController.h"
+#import "CateViewController.h"
+#import "DetailViewController.h"
 
 @interface HomePageViewController ()
 <
 UICollectionViewDelegate,
 UICollectionViewDataSource,
-UICollectionViewDelegateFlowLayout
+UICollectionViewDelegateFlowLayout,
+CateViewDelegate
 >
 @property (nonatomic, copy) NSMutableArray *hotList;
+// 定义一个id, 保存数据的类型
+@property (nonatomic, assign) NSInteger nodeId;
+
+// 定义分类容器
+@property (nonatomic, strong) CateViewController* cateView;
 @end
 
 @implementation HomePageViewController
@@ -30,6 +39,7 @@ UICollectionViewDelegateFlowLayout
     self = [super init];
     if (self) {
         _hotList = [NSMutableArray new];
+        _nodeId = -1;
     }
     return self;
 }
@@ -38,10 +48,13 @@ UICollectionViewDelegateFlowLayout
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.translucent = NO;
+    self.title = @"Hot";
     self.tabBarController.tabBar.hidden = YES;
+    _cateView = [CateViewController new];
+    _cateView.delegate = self;
     [self initNavigationItem];
     [self initCollectionView];
-    [self loadData];
+    [self loadData:_nodeId];
     // Do any additional setup after loading the view.
 }
 
@@ -88,8 +101,12 @@ UICollectionViewDelegateFlowLayout
     __weak typeof(self) wself = self;
     MJRefreshStateHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         sleep(2);
-        [wself loadData];
-        [wself.collectionView reloadData];
+        if (wself.nodeId != -1) {
+            [wself loadData:wself.nodeId];
+        } else {
+            [wself loadData:-1];
+        }
+        [wself.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
         [self.collectionView.mj_header endRefreshing];
     }];
     _collectionView.mj_header = header;
@@ -102,8 +119,25 @@ UICollectionViewDelegateFlowLayout
 -(void)navigationPress:(UIBarButtonItem *)btn {
     if (btn.tag == SettingBarBtnTag) {
         NSLog(@"设置中!!");
+        // 自定义导航动画
+        CATransition *animation = [CATransition animation];
+        animation.duration =  .3;
+        animation.type = @"push";
+        // 设置动画的子类型， 例如动画的方向
+        animation.subtype = kCATransitionFromLeft;
+        // 运动轨迹
+        animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        [self.navigationController.view.layer addAnimation:animation forKey:nil];
+        [self.navigationController pushViewController:[ProfileViewController new] animated:NO];
     } else {
         NSLog(@"更多...");
+        CATransition *anim = [CATransition animation];
+        anim.duration = .4;
+        anim.type = @"push";
+        anim.subtype = kCATransitionFromTop;
+        anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        [self.navigationController.view.layer addAnimation:anim forKey:nil];
+        [self.navigationController pushViewController:_cateView animated:NO];
     }
 }
 
@@ -123,25 +157,48 @@ UICollectionViewDelegateFlowLayout
     return cell;
 }
 
+// 选中单元格时调用
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    DetailViewController *detailView = [DetailViewController new];
+    [self.navigationController pushViewController:detailView animated:YES];
+}
 
--(void)loadData {
+
+-(void)loadData:(NSInteger) nodeId {
     TopicsHotModel *request = [TopicsHotModel new];
+    NSString *url = TopicsHotURL;
+    if(nodeId != -1) {
+        request.node_id = nodeId;
+        url = TopicsByNodeIdURL;
+    }
     __weak typeof (self) wself = self;
-    [NetworkHelper getWithUrlPath:TopicsHotURL request:request success:^(id data) {
-        NSLog(@"%@====", data);
+    [NetworkHelper getWithUrlPath:url request:request success:^(id data) {
+        [wself.hotList removeAllObjects];
         for (NSDictionary *dic in data) {
             TopicsHotModel *topicsHotModel = [TopicsHotModel new];
-            NSDictionary *node = [dic objectForKey:@"node"];
+            NSDictionary *node = [dic objectForKey:@"member"];
             topicsHotModel.avatar_normal = [node objectForKey:@"avatar_large"];
-            topicsHotModel.name = [node objectForKey:@"name"];
+            topicsHotModel.name = [node objectForKey:@"username"];
             topicsHotModel.last_modified = [dic objectForKey:@"last_modified"];
             topicsHotModel.content = [dic objectForKey:@"content"];
             [wself.hotList addObject:topicsHotModel];
         }
-        [wself.collectionView reloadData];
+        [wself.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
     } failure:^(NSError *error) {
         NSLog(@"%@", error);
     }];
+}
+
+//根据id 重新渲染首页的数据
+- (void)onCellTapAction:(NSInteger)nodeID WidthTitle:(NSString *)title {
+    NSLog(@"id====%@", title);
+    if(_nodeId == nodeID) {
+        
+    } else {
+        self.title = title;
+        [self loadData:nodeID];
+        _nodeId = nodeID;
+    }
 }
 
 /*

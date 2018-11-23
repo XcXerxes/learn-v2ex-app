@@ -20,6 +20,17 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    CATransition *anim = [CATransition animation];
+    anim.type = @"push";
+    anim.duration =  .3;
+    anim.subtype = kCATransitionFromRight;
+    // 运动轨迹
+    anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    [super viewWillDisappear:animated];
+    [self.navigationController.view.layer addAnimation:anim forKey:nil];
+}
+
 /*
 #pragma mark - Navigation
 

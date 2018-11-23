@@ -91,7 +91,9 @@
 }
 // 动态布局的关键2
 - (UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
-    [self setNeedsLayout];
+    // 强制刷新布局？ 这里面不用 自适应布局 也不会乱！！！
+    // [self setNeedsLayout];
+    // 马上更新视图？ 这里面不用 自适应布局 也不会乱！！！
     [self layoutIfNeeded];
     CGSize size = [self.contentView systemLayoutSizeFittingSize:layoutAttributes.size]; // 获取自适应size
     CGRect newFrame = layoutAttributes.frame;

@@ -33,7 +33,7 @@ NSString * const TopicsByUserNameURL = @"/topics/show.json?username=";
 // 通过节点获取该节点下的主题
 NSString * const TopicsByNameURL = @"/topics/show.json?node_name=";
 // 通过id 获取主题
-NSString * const TopicsByNodeIdURL = @"/topics/show.json?node_id=";
+NSString * const TopicsByNodeIdURL = @"/topics/show.json";
 
 @implementation NetworkHelper
 + (AFHTTPSessionManager *)sharedManager {

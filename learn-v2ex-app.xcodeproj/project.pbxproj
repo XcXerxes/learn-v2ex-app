@@ -22,6 +22,9 @@
 		CFE2C95621A53D92000DB613 /* HomeNavigationItemBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE2C95521A53D92000DB613 /* HomeNavigationItemBar.m */; };
 		CFE2C95B21A54F4B000DB613 /* HotCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE2C95A21A54F4B000DB613 /* HotCollectionViewCell.m */; };
 		CFE2C95E21A68791000DB613 /* HomeCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE2C95D21A68791000DB613 /* HomeCollectionViewFlowLayout.m */; };
+		CFE2C96221A79FDC000DB613 /* CateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE2C96121A79FDC000DB613 /* CateViewController.m */; };
+		CFE2C96521A7A52B000DB613 /* CateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE2C96421A7A52B000DB613 /* CateModel.m */; };
+		CFE2C96921A7DD3D000DB613 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE2C96821A7DD3D000DB613 /* DetailViewController.m */; };
 		D493D7D1856321BC7C048B8C /* libPods-learn-v2ex-app.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3E504D98055FB3E526EB35F /* libPods-learn-v2ex-app.a */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +60,12 @@
 		CFE2C95A21A54F4B000DB613 /* HotCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotCollectionViewCell.m; sourceTree = "<group>"; };
 		CFE2C95C21A68791000DB613 /* HomeCollectionViewFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		CFE2C95D21A68791000DB613 /* HomeCollectionViewFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		CFE2C96021A79FDC000DB613 /* CateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CateViewController.h; sourceTree = "<group>"; };
+		CFE2C96121A79FDC000DB613 /* CateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CateViewController.m; sourceTree = "<group>"; };
+		CFE2C96321A7A52B000DB613 /* CateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CateModel.h; sourceTree = "<group>"; };
+		CFE2C96421A7A52B000DB613 /* CateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CateModel.m; sourceTree = "<group>"; };
+		CFE2C96721A7DD3D000DB613 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		CFE2C96821A7DD3D000DB613 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		F3E504D98055FB3E526EB35F /* libPods-learn-v2ex-app.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-learn-v2ex-app.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -124,6 +133,8 @@
 				0DBA13FA21A573F700F2D284 /* BaseModel.m */,
 				0DBA13FC21A574F200F2D284 /* TopicsHotModel.h */,
 				0DBA13FD21A574F200F2D284 /* TopicsHotModel.m */,
+				CFE2C96321A7A52B000DB613 /* CateModel.h */,
+				CFE2C96421A7A52B000DB613 /* CateModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -148,6 +159,8 @@
 		CFD8164921A4ECA60098F526 /* modules */ = {
 			isa = PBXGroup;
 			children = (
+				CFE2C96621A7DD18000DB613 /* Detail - 详情页 */,
+				CFE2C95F21A79C3A000DB613 /* Categroies - 类型 */,
 				CFE2C95021A534BA000DB613 /* Profile - 个人设置 */,
 				CFE2C94921A50B72000DB613 /* Main - 主页部分 */,
 				CFD8164A21A4ED490098F526 /* Other */,
@@ -204,6 +217,24 @@
 				CFE2C95821A54445000DB613 /* Constants.h */,
 			);
 			name = utils;
+			sourceTree = "<group>";
+		};
+		CFE2C95F21A79C3A000DB613 /* Categroies - 类型 */ = {
+			isa = PBXGroup;
+			children = (
+				CFE2C96021A79FDC000DB613 /* CateViewController.h */,
+				CFE2C96121A79FDC000DB613 /* CateViewController.m */,
+			);
+			path = "Categroies - 类型";
+			sourceTree = "<group>";
+		};
+		CFE2C96621A7DD18000DB613 /* Detail - 详情页 */ = {
+			isa = PBXGroup;
+			children = (
+				CFE2C96721A7DD3D000DB613 /* DetailViewController.h */,
+				CFE2C96821A7DD3D000DB613 /* DetailViewController.m */,
+			);
+			name = "Detail - 详情页";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,12 +353,15 @@
 				0DBA13FE21A574F200F2D284 /* TopicsHotModel.m in Sources */,
 				CFE2C94F21A531E6000DB613 /* HomePageViewController.m in Sources */,
 				CFE2C95B21A54F4B000DB613 /* HotCollectionViewCell.m in Sources */,
+				CFE2C96921A7DD3D000DB613 /* DetailViewController.m in Sources */,
 				CFD8165121A4EE250098F526 /* NavigationController.m in Sources */,
 				CFE2C95321A534D3000DB613 /* ProfileViewController.m in Sources */,
 				0DBA13EE21A4439800F2D284 /* main.m in Sources */,
 				0DBA13E021A4439700F2D284 /* AppDelegate.m in Sources */,
 				0DBA13FB21A573F700F2D284 /* BaseModel.m in Sources */,
+				CFE2C96221A79FDC000DB613 /* CateViewController.m in Sources */,
 				CFE2C95621A53D92000DB613 /* HomeNavigationItemBar.m in Sources */,
+				CFE2C96521A7A52B000DB613 /* CateModel.m in Sources */,
 				CFE2C95E21A68791000DB613 /* HomeCollectionViewFlowLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

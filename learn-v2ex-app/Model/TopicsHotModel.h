@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TopicsHotModel : BaseModel
+@property (nonatomic, assign) NSInteger node_id;
 // 定义头像的地址
 @property(nonatomic, copy) NSString *avatar_normal;
 // 定义名字
