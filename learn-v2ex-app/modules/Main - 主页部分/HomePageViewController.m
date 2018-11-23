@@ -10,6 +10,7 @@
 #import "HotCollectionViewCell.h"
 #import "Constants.h"
 #import "NetworkHelper.h"
+#import "MBProgressHUD.h"
 #import "TopicsHotModel.h"
 #import "HomeCollectionViewFlowLayout.h"
 #import "MJRefresh.h"
@@ -172,7 +173,10 @@ CateViewDelegate
         url = TopicsByNodeIdURL;
     }
     __weak typeof (self) wself = self;
+    MBProgressHUD *mbProgress = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    mbProgress.label.text = @"拼命加载中...";
     [NetworkHelper getWithUrlPath:url request:request success:^(id data) {
+        [MBProgressHUD hideHUDForView:wself.view animated:YES];
         [wself.hotList removeAllObjects];
         for (NSDictionary *dic in data) {
             TopicsHotModel *topicsHotModel = [TopicsHotModel new];
